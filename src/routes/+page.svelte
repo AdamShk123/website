@@ -51,7 +51,7 @@
     .content {
         height: 100%;
         background-color: #ffc852;
-        background-image: url("floral.jpg");
+        background-image: url("$lib/floral.jpg");
         justify-content: center;
         display: flex;
     }
@@ -67,7 +67,7 @@
     .col {
         background-color: #ffd372;
         margin: 30px;
-        width: 50%;
+        width: 60%;
         border-color: #000000;
         border-style: solid;
         border-width: 4px;
