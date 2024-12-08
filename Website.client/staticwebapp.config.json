@@ -1,0 +1,10 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "mimeTypes": {
+    ".json": "text/json",
+    ".png": "image/png",
+    ".svg": "image/svg+xml"
+  }
+}
