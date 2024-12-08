@@ -5,6 +5,8 @@
   "mimeTypes": {
     ".json": "text/json",
     ".png": "image/png",
-    ".svg": "image/svg+xml"
+    ".svg": "image/svg+xml",
+    ".js": "text/javascript",
+    ".html": "text/html"
   }
 }
