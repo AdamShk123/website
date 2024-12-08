@@ -5,13 +5,13 @@ on:
     branches:
       - main
     paths:
-      - 'Website.client/'
+      - 'Website.client/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
     paths:
-      - 'Website.client/'
+      - 'Website.client/**'
 
 jobs:
   build_and_deploy_job:
