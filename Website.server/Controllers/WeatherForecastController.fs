@@ -9,7 +9,7 @@ open Microsoft.Extensions.Logging
 open Website.server
 
 [<ApiController>]
-[<Route("[controller]")>]
+[<Route("/api/[controller]")>]
 type WeatherForecastController (logger : ILogger<WeatherForecastController>) =
     inherit ControllerBase()
 
