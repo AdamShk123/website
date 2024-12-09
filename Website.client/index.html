@@ -6,11 +6,38 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" type="text/css" href="/src/css/styles.scss">
 </head>
-<body>
+<body class="m-0">
     <script type="module" src="/src/main.ts"></script>
-    <div id="app">
-        <button class="btn" id="clickButton">Click</button>
-        <div id="clickCount">0</div>
+    <div class="app" id="app">
+        <div class="header">
+            <div class="leftHeader">
+                <h1 class="mx-1 my-1">Adam Shkolnik</h1>
+            </div>
+            <div class="rightHeader">
+                <a href="#about" class="headerLinkText">
+                    <h2>About</h2>
+                </a>
+                <a href="#experience" class="headerLinkText">
+                    <h2>Experience</h2>
+                </a>
+                <a href="#projects" class="headerLinkText">
+                    <h2>Projects</h2>
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <div id="about" class="about">
+                <h2 class="sectionHeaderText">About</h2>
+                <button class="btn" id="clickButton">Click</button>
+                <div id="clickCount">0</div>
+            </div>
+            <div id="experience" class="experience">
+                <h2 class="sectionHeaderText">Experience</h2>
+            </div>
+            <div id="projects" class="projects">
+                <h2 class="sectionHeaderText">Projects</h2>
+            </div>
+        </div>
     </div>
 </body>
 </html>
