@@ -1,14 +1,14 @@
-import { raiseCounter } from "./ts/counter.ts";
+// import { raiseCounter } from "./ts/counter.ts";
     
 const URI = import.meta.env.VITE_URI;
 
-const clickButton: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#clickButton')
-const clickCount: HTMLDivElement | null = document.querySelector<HTMLDivElement>('#clickCount')
-
-if(clickButton != null && clickCount != null) 
-{
-    clickButton.addEventListener("click", () => raiseCounter(clickCount));   
-}
+// const clickButton: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>('#clickButton')
+// const clickCount: HTMLDivElement | null = document.querySelector<HTMLDivElement>('#clickCount')
+//
+// if(clickButton != null && clickCount != null) 
+// {
+//     clickButton.addEventListener("click", () => raiseCounter(clickCount));   
+// }
 
 // const aboutSection: HTMLDivElement | null = document.querySelector<HTMLDivElement>('#about');
 const experienceSection: HTMLDivElement | null = document.querySelector<HTMLDivElement>('#experience');
@@ -77,29 +77,29 @@ document.addEventListener("scrollend", () => {
     }
 })
 
-const getData = async () => {
-    const url = URI + '/api/messages';
-    const init: RequestInit = { method: "GET" };
-
-    try 
-    {
-        const response = await fetch(url, init);
-
-        if(!response.ok)
-        {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const json = await response.json();
-        console.log(json);
-    }
-    catch (err: unknown) 
-    {
-        if (err instanceof Error) 
-        {
-            console.log(err.message);
-        }
-    }
-};
-
-getData().then(() => console.log("complete"));
+// const getData = async () => {
+//     const url = URI + '/api/messages';
+//     const init: RequestInit = { method: "GET" };
+//
+//     try 
+//     {
+//         const response = await fetch(url, init);
+//
+//         if(!response.ok)
+//         {
+//             throw new Error(`Response status: ${response.status}`);
+//         }
+//
+//         const json = await response.json();
+//         console.log(json);
+//     }
+//     catch (err: unknown) 
+//     {
+//         if (err instanceof Error) 
+//         {
+//             console.log(err.message);
+//         }
+//     }
+// };
+//
+// getData().then(() => console.log("complete"));
