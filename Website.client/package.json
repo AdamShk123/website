@@ -8,15 +8,20 @@
     "preview": "npx vite preview",
     "lint": "npx eslint .",
     "fix": "npx eslint --fix .",
-    "test": "vitest"
+    "test": "vitest",
+    "swa": "swa init",
+    "st": "swa start",
+    "bu": "swa build"
   },
   "type": "module",
   "author": "Adam Shkolnik",
   "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@azure/static-web-apps-cli": "^2.0.1",
     "@eslint/js": "^9.16.0",
     "@types/node": "^22.10.1",
+    "dotenv": "^16.4.7",
     "eslint": "^9.16.0",
     "globals": "^15.13.0",
     "jsdom": "^25.0.1",
