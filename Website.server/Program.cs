@@ -19,16 +19,15 @@ else
 {
     const string secretName = "connection";
     const string keyVaultName = "portfolio-website-vault";
-    var kvUri = $"https://{keyVaultName}.vault.azure.net";
+    const string kvUri = $"https://{keyVaultName}.vault.azure.net";
     
-    var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+    var client = new SecretClient(new Uri(kvUri), new ManagedIdentityCredential());
     try
     {
         connectionString = client.GetSecret(secretName).Value.Value;
     }
     catch (RequestFailedException exception)
     {
-        logger.Log(LogLevel.Information,exception.Message);
         logger.Log(LogLevel.Debug,exception.Message);
     }   
 }
