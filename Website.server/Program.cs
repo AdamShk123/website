@@ -18,7 +18,7 @@ else
     var kvUri = $"https://{keyVaultName}.vault.azure.net";
     
     var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
-    connectionString = client.GetSecretAsync(secretName).Result.Value.Value;
+    connectionString = (await client.GetSecretAsync(secretName)).Value.Value;
 }
 
 
