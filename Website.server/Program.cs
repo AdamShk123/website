@@ -1,3 +1,4 @@
+using Azure;
 using Microsoft.EntityFrameworkCore;
 using Website.server.Models;
 
@@ -18,7 +19,14 @@ else
     var kvUri = $"https://{keyVaultName}.vault.azure.net";
     
     var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
-    connectionString = client.GetSecret(secretName).Value.Value;
+    try
+    {
+        connectionString = client.GetSecret(secretName).Value.Value;
+    }
+    catch (RequestFailedException exception)
+    {
+        Console.WriteLine(exception.Message);
+    }
 }
 
 
