@@ -4,6 +4,7 @@ using Website.server.Models;
 
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = "";
@@ -39,7 +40,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         name: localhost,
-        policy => policy.SetIsOriginAllowed(_ => true)
+        policy => policy.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader()
     );
 });
 
