@@ -7,6 +7,7 @@ using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = "";
+const string clientId = "a41232ad-8d13-47fd-bf67-66c5d9504887";
 
 var factory = LoggerFactory.Create(b => b.AddDebug().AddConsole());
 var logger = factory.CreateLogger<Program>();
@@ -21,7 +22,7 @@ else
     const string keyVaultName = "portfolio-website-vault";
     const string kvUri = $"https://{keyVaultName}.vault.azure.net";
     
-    var client = new SecretClient(new Uri(kvUri), new ManagedIdentityCredential());
+    var client = new SecretClient(new Uri(kvUri), new ManagedIdentityCredential(clientId));
     try
     {
         connectionString = client.GetSecret(secretName).Value.Value;
@@ -38,7 +39,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         name: localhost,
-        policy => policy.SetIsOriginAllowed(origin => true)
+        policy => policy.SetIsOriginAllowed(_ => true)
     );
 });
 
