@@ -8,13 +8,13 @@ public class MessageModel
     public Int32 Id { get; set; }
     
     [MaxLength(50)]
-    public String Name { get; set; }
+    public required String Name { get; set; }
     
     [MaxLength(50)]
-    public String Email { get; set; }
+    public required String Email { get; set; }
     
     [MaxLength(1000)]
-    public String Message { get; set; }
+    public required String Message { get; set; }
     
     public DateTime Sent { get; set; }
 };
