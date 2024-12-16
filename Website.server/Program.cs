@@ -8,6 +8,9 @@ using Azure.Security.KeyVault.Secrets;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = "";
 
+var factory = LoggerFactory.Create(b => b.AddDebug().AddConsole());
+var logger = factory.CreateLogger<Program>();
+
 if (builder.Environment.IsDevelopment())
 {
     connectionString = builder.Configuration["ConnectionStrings:PortfolioDatabase"];
@@ -25,10 +28,10 @@ else
     }
     catch (RequestFailedException exception)
     {
-        Console.WriteLine(exception.Message);
-    }
+        logger.Log(LogLevel.Information,exception.Message);
+        logger.Log(LogLevel.Debug,exception.Message);
+    }   
 }
-
 
 const string localhost = "localhost";
 
