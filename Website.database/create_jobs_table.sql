@@ -21,6 +21,7 @@ CREATE TABLE dbo.Companies (
 	Company VARCHAR(50) NOT NULL,
     City VARCHAR(50) NOT NULL,
     State VARCHAR(2) NOT NULL,
+    Logo VARCHAR(50) NOT NULL
 	PRIMARY KEY (Id)
 );
 
