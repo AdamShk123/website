@@ -9,37 +9,34 @@ const postMessage = async (URI: string) => {
     headers.append("Content-Type","application/json");
     headers.append("Access-Control-Allow-Origin","*");
 
-    const message: Message = {
-        name: formData.get('name') as string,
-        email: formData.get('email') as string,
-        message: formData.get('message') as string
-    };
+    const message = mapMessage(formData);
 
     const init: RequestInit = {
         headers: headers,
         method: "POST",
         body: JSON.stringify(message)
     };
-    
-    try
+
+    const response = await fetch(url, init);
+
+    if(!response.ok)
     {
-        const response = await fetch(url, init);
-
-        if(!response.ok)
-        {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const json = await response.json();
-        
-        alert("Message Sent Successfully!");
-
-        return json;
+        throw new Error(`Response status: ${response.status}`);
     }
-    catch (err: unknown)
-    {
-        alert("Sending Message Failed!");
-    }
+
+    const json = await response.json();
+
+    alert("Message Sent Successfully!");
+
+    return json;
+};
+
+const mapMessage = (formData: FormData): Message => {
+    return {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        message: formData.get('message') as string
+    } as Message
 };
 
 export { postMessage };
