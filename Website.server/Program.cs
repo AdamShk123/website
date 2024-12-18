@@ -5,6 +5,7 @@ using Website.server.Models;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Storage.Blobs;
+using Azure.Communication.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,9 +49,18 @@ const string container = "container";
 
 const string containerEndpoint = $"https://{account}.blob.core.windows.net/{container}";
 
+var endpoint = "https://portfoliocommunicationservices.unitedstates.communication.azure.com/";
+
 builder.Services.AddSingleton(
     new BlobContainerClient(
         new Uri(containerEndpoint),
+        credential
+    )
+);
+
+builder.Services.AddSingleton(
+    new EmailClient(
+        new Uri(endpoint), 
         credential
     )
 );
@@ -67,8 +77,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<MessageContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<JobContext>(options => options.UseSqlServer(connectionString));
+const int maxRetries = 2;
+
+builder.Services.AddDbContext<MessageContext>(options => options.UseSqlServer(connectionString, op => op.EnableRetryOnFailure(maxRetries)));
+builder.Services.AddDbContext<JobContext>(options => options.UseSqlServer(connectionString, op => op.EnableRetryOnFailure(maxRetries)));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

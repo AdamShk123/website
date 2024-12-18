@@ -17,15 +17,22 @@ public class MessageModel
     public required String Message { get; set; }
     
     public DateTime Sent { get; set; }
+    
+    public Boolean Mailed { get; set; }
 };
 
 public class MessageContext(DbContextOptions<MessageContext> options) : DbContext(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<MessageModel>().ToTable("Messages", "dbo");
+
         modelBuilder.Entity<MessageModel>()
-            .ToTable("Messages", "dbo")
             .Property(e => e.Sent)
+            .HasDefaultValueSql();
+            
+        modelBuilder.Entity<MessageModel>()
+            .Property(e => e.Mailed)
             .HasDefaultValueSql();
     }
     
