@@ -5,13 +5,12 @@ namespace Website.server.Controllers;
 
 [ApiController]
 [Route("/api/messages")]
-public class MessageController(ILogger<MessageController> logger, MessageContext ctx) : ControllerBase
+public class MessageController(MessageContext ctx) : ControllerBase
 {
-    [HttpGet(Name = "GetMessages")]
-    public IEnumerable<MessageModel> Get()
+    [HttpGet]
+    public ActionResult<int> Get()
     {
-        logger.Log(LogLevel.Debug, "GetMessages Called!");
-        return ctx.Messages;
+        return ctx.Messages.Count();
     }
     
     [HttpPost]

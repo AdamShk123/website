@@ -6,10 +6,10 @@ namespace Website.server.Controllers;
 
 [ApiController]
 [Route("/api/jobs")]
-public class JobController(ILogger<JobController> logger, JobContext ctx) : ControllerBase
+public class JobController(JobContext ctx) : ControllerBase
 {
-    [HttpGet(Name = "GetJobs")]
-    public IEnumerable<JobModel> Get()
+    [HttpGet]
+    public ActionResult<List<JobModel>> Get()
     {
         return ctx.Jobs
             .Include(e => e.CompanyItem)

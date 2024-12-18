@@ -34,6 +34,9 @@ public class CompanyModel
     
     [MaxLength(2)]
     public required String State { get; set; }
+    
+    [MaxLength(50)]
+    public required String Logo { get; set; }
 }
 
 public class JobContext(DbContextOptions<JobContext> options) : DbContext(options)

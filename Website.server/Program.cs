@@ -4,35 +4,56 @@ using Website.server.Models;
 
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using Microsoft.Net.Http.Headers;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = "";
-const string clientId = "a41232ad-8d13-47fd-bf67-66c5d9504887";
 
 var factory = LoggerFactory.Create(b => b.AddDebug().AddConsole());
 var logger = factory.CreateLogger<Program>();
 
 if (builder.Environment.IsDevelopment())
 {
-    connectionString = builder.Configuration["ConnectionStrings:PortfolioDatabase"];
+    Environment.SetEnvironmentVariable("AZURE_CLIENT_ID", builder.Configuration["AppClientID"]);
+    Environment.SetEnvironmentVariable("AZURE_TENANT_ID", builder.Configuration["AppTenantID"]);
+    Environment.SetEnvironmentVariable("AZURE_CLIENT_SECRET", builder.Configuration["AppClientSecret"]);
 }
-else
-{
-    const string secretName = "connection";
-    const string keyVaultName = "portfolio-website-vault";
-    const string kvUri = $"https://{keyVaultName}.vault.azure.net";
-    
-    var client = new SecretClient(new Uri(kvUri), new ManagedIdentityCredential(clientId));
-    try
+
+var credential = new DefaultAzureCredential(
+    new DefaultAzureCredentialOptions
     {
-        connectionString = client.GetSecret(secretName).Value.Value;
+        ManagedIdentityClientId = "a41232ad-8d13-47fd-bf67-66c5d9504887"
     }
-    catch (RequestFailedException exception)
-    {
-        logger.Log(LogLevel.Debug,exception.Message);
-    }   
+);
+
+const string secretName = "connection";
+const string keyVaultName = "portfolio-website-vault";
+const string kvUri = $"https://{keyVaultName}.vault.azure.net";
+    
+var client = new SecretClient(new Uri(kvUri), credential);
+
+var connectionString = "";
+
+try
+{
+    connectionString = client.GetSecret(secretName).Value.Value;
+    
 }
+catch (RequestFailedException exception)
+{
+    logger.Log(LogLevel.Information, exception.Message);
+}
+
+const string account = "portfoliostorageaccount";
+const string container = "container";
+
+const string containerEndpoint = $"https://{account}.blob.core.windows.net/{container}";
+
+builder.Services.AddSingleton(
+    new BlobContainerClient(
+        new Uri(containerEndpoint),
+        credential
+    )
+);
 
 const string localhost = "localhost";
 
@@ -40,7 +61,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         name: localhost,
-        policy => policy.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader()
+        policy => policy.SetIsOriginAllowed(_ => true).WithMethods("GET","POST").WithHeaders("access-control-allow-origin", "content-type")
     );
 });
 
