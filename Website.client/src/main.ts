@@ -1,7 +1,6 @@
 import { scrollSection } from "./ts/scroll.ts";
 import { postMessage } from "./ts/post.ts";
-import { Job } from "./ts/job.ts";
-import { getJobs, mapJobs } from "./ts/getJobs.ts";
+import { createJobSection } from "./ts/getJobs.ts";
 
 const URI = import.meta.env.VITE_URI;
 
@@ -14,8 +13,6 @@ sendButton!.onclick = () => postMessage(URI)
     .catch(() => alert("Failed to Send Message!")
 );
 
-const result = getJobs(URI)
-    .then(jobs => mapJobs(jobs))
-    .catch((err) => { console.log(err); return Array<Job>(); });
-
-console.log(result);
+createJobSection(URI)
+    .then(() => console.log("Succeeded!"));
+    // .catch((err: unknown) => console.log(err));
