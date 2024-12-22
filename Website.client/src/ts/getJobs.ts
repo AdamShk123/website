@@ -45,14 +45,14 @@ const addImages = async(URI: string, jobs: Job[]): Promise<string[]> => {
     }));
 }
 
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 const createJobSection = async (URI: string): Promise<void> => {
     const jobs = await getJobs(URI)
         .then(jobs => mapJobs(jobs))
         .catch((err) => { console.log(err); return Array<Job>(); });
     
     const images = await addImages(URI, jobs);
-    
-    // jobs.forEach()
     
     const jobsDiv: HTMLDivElement | null = document.querySelector<HTMLDivElement>('#jobs');
     
@@ -68,11 +68,17 @@ const createJobSection = async (URI: string): Promise<void> => {
         if(jobsDiv)
         {
             jobs
-                .map((job: Job, index: number) => `
-                    <h2>${job.company}</h2>
-                    <h3>${job.title}</h3>
-                    <h3>${job.startDate.toDateString()} - ${job.endDate.toDateString()}</h3>
-                    ${images[index]}
+                .map((job: Job, index: number) =>`
+                    <div class="job">
+                        <div class="logoDiv">${images[index].replace("<svg", "<svg class=\"logo\"")}</div>
+                        <div class="text">
+                            <h2>${job.company}</h2>
+                            <h3>${job.title}</h3>
+                            <h3>${months[job.startDate.getMonth()]} ${job.startDate.getFullYear()} - ${months[job.endDate.getMonth()]} ${job.endDate.getFullYear()}</h3>
+                            <h3>${job.city}, ${job.state}</h3>
+                            <p>Details Details Details Details Details</p>
+                        </div>
+                    </div>
                 `)
                 .forEach((job: string) => jobsDiv.innerHTML += job);
         }

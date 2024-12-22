@@ -14,5 +14,4 @@ sendButton!.onclick = () => postMessage(URI)
 );
 
 createJobSection(URI)
-    .then(() => console.log("Succeeded!"));
-    // .catch((err: unknown) => console.log(err));
+    .then(() => console.log("Finished!"));

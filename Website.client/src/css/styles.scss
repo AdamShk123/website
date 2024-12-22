@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 50px;
     position: sticky;
     top: 0;
-    background-color: rgba(vars.$purple, 100%);
+    background-color: rgba(vars.$purple, 80%);
     color: vars.$white;
     display: flex;
     flex-direction: row;
@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-shrink: 0;
     overflow: hidden;
 }
@@ -71,6 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 .app {
     width: 100%;
     height: fit-content;
+    background-color: vars.$firstBackground;
 }
 
 .headerLinkText {
@@ -186,6 +187,43 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.logo {
+    width: 150px;
+    border-radius: 100px;
+    height: fit-content;
+}
+
+.logoDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.education {
+    display: flex;
+    flex-direction: row;
+    margin-block: 20px;
+}
+
+.job {
+    display: flex;
+    flex-direction: row;
+    margin-block: 20px;
+}
+
+.leftExperience {
+    flex: 1;
+}
+
+.rightExperience {
+    flex: 1;
+}
+
+.text {
+    margin-inline: 10px;
+    flex: 1;
 }
 
 .projects {
