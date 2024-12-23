@@ -10,7 +10,7 @@ public class JobModel
     [MaxLength(50)]
     public required String Title { get; set; }
     
-    [MaxLength(150)]
+    [MaxLength(1000)]
     public required String Details { get; set; }
     
     public DateTime StartDate { get; set; }
