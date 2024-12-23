@@ -76,7 +76,7 @@ const createJobSection = async (URI: string): Promise<void> => {
                             <h3>${job.title}</h3>
                             <h3>${months[job.startDate.getMonth()]} ${job.startDate.getFullYear()} - ${months[job.endDate.getMonth()]} ${job.endDate.getFullYear()}</h3>
                             <h3>${job.city}, ${job.state}</h3>
-                            <p>Details Details Details Details Details</p>
+                            <p>Details</p>
                         </div>
                     </div>
                 `)
