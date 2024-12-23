@@ -29,7 +29,7 @@
             <div id="about" class="about">
                 <div class="inner">
                     <div class="left">
-                        <img class="img" src="me.jpg">
+                        <img class="img" src="me.jpg" alt="Profile Picture">
                     </div>
                     <div class="right">
                         <h1 class="sectionHeaderText">
@@ -37,12 +37,12 @@
                         </h1>
                         <div class="home">
                             <img src="home.svg">
-                            <div class="mx-1">Chicago, IL</div>
+                            <h3 class="mx-1">Chicago, IL</h3>
                         </div>
-                        <p>
+                        <p class="paragraph">
                             I’m a software engineer, and I recently graduated from Loyola University Chicago with a B.S in Computer Science.
                         </p>
-                        <p>
+                        <p class="paragraph">
                             I am enthusiastic about computers and software development, especially 3D Computer Graphics, Linux, and anything in between.
                         </p>
                         <h1 class="sectionHeaderText">
@@ -51,11 +51,11 @@
                         <form class="form" id="form">
                             <div class="fields">
                                 <label for="name"></label>
-                                <input type="text" id="name" name="name" maxlength="50" placeholder="Name" required>
+                                <input class="field" type="text" id="name" name="name" maxlength="50" placeholder="Name" required>
                                 <label for="email"></label>
-                                <input type="email" id="email" name="email" placeholder="Email" required>
+                                <input class="field" type="email" id="email" name="email" placeholder="Email" required>
                                 <label for="message"></label>
-                                <input type="text" id="message" name="message" maxlength="1000" placeholder="Message" required>
+                                <textarea class="box" rows="5" cols="40" id="message" name="message" maxlength="1000" placeholder="Message" required></textarea>
                             </div>
                             <div class="buttons">
                                 <input type="reset" class="reset" value="Reset">
@@ -63,9 +63,9 @@
                             </div>
                         </form>
                         <div class="social">
-                            <img src="mail.svg" class="link email">
-                            <img src="linkedin.svg" class="link">
-                            <img src="github.svg" class="link github">
+                            <a class="link" href="mailto:adam.shkolnik@outlook.com"><img src="mail.svg" class="link" alt="Email Link"></a>
+                            <a href="https://www.linkedin.com/in/adam-shkolnik-a09a6122b"><img src="linkedin.svg" class="link" alt="LinkedIn Link"></a>
+                            <a href="https://github.com/AdamShk123"><img src="github.svg" class="link github" alt="GitHub Link"></a>
                         </div>
                     </div>
                 </div>

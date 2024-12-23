@@ -12,16 +12,6 @@ body {
     height: 100%;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
-
-a:hover {
-    background-color: #9157dd;
-    transition: 0.25s;
-}
-
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
@@ -79,6 +69,13 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     display: flex;
     align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.headerLinkText:hover {
+    background-color: #9157dd;
+    transition: 0.25s;
 }
 
 .content {
@@ -112,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    margin-left: 30px;
 }
 
 .form {
@@ -123,6 +121,37 @@ h1, h2, h3, h4, h5, h6 {
 .fields {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.field {
+    background-color: vars.$secondBackground;
+    color: vars.$white;
+    border-width: 0;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    margin-block: 5px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.paragraph {
+    font-size: 18px;
+}
+
+.box {
+    background-color: vars.$secondBackground;
+    color: vars.$white;
+    border-width: 0;
+    height: 100px;
+    max-width: 100%;
+    padding: 10px;
+    margin-block: 5px;
+    font-size: 18px;
+    box-sizing: border-box;
 }
 
 .buttons {
@@ -130,18 +159,31 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    width: 100%;
+    margin-top: 5px;
 }
 
 .send {
+    margin-left: 10px;
     width: 100px;
     height: 50px;
     color: vars.$white;
     background-color: vars.$purple;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+}
+
+.send:hover {
+    
 }
 
 .reset {
     width: 100px;
     height: 50px;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
 }
 
 .social {
@@ -156,20 +198,16 @@ h1, h2, h3, h4, h5, h6 {
     filter: invert(100%);
 }
 
-.email {
-    filter: invert(50%) sepia(77%) saturate(7472%) hue-rotate(268deg) brightness(100%) contrast(103%);
-}
-
 .left {
-    flex: 1;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 300px;
 }
 
 .img {
-    width: 75%;
+    width: 100%;
     aspect-ratio: auto;
     border-radius: 100%;
     border-color: vars.$yellow;
